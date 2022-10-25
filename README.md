@@ -26,7 +26,7 @@
 |item_price|integer|null:false|
 |user|references|foreign_key:true|
 
-## Association
+# Association
 - belongs_to :user
 - has_one :buyer
 
