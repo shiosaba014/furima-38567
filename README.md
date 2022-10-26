@@ -11,20 +11,20 @@
 |birth|date|null:false|
 ## Association
 - has_many :items
-- has_one :consumer
+- has_many :consumers
 
 # itemsテーブル
 |column|type|option|
 |-|:-:|-:|
-|item_name|string|null:false|
-|item_explan|text|null:false|
-|item_category_id|integer|null:false|
-|item_situation_id|integer|null:false|
-|item_delivery_charge_id|integer|null:false|
+|name|string|null:false|
+|explan|text|null:false|
+|category_id|integer|null:false|
+|situation_id|integer|null:false|
+|delivery_charge_id|integer|null:false|
 |address_id|integer|null:false|
-|item_day_id|integer|null:false|
-|item_price|integer|null:false|
-|user|references|foreign_key:true|
+|period_id|integer|null:false|
+|price|integer|null:false|
+|user|references|foreign_key:true,null:false|
 
 ## Association
 - belongs_to :user
@@ -33,13 +33,13 @@
 # buyersテーブル
 |column|type|option|
 |-|:-:|-:|
-|buyer_post_code|string|null:false|
+|post_code|string|null:false|
 |address_id|integer|null:false|
-|buyer_municipalities|string|null:false|
-|buyer_address_number|integer|null:false|
-|buyer_building|string||
-|buyer_tel|string|null:false|
-|consumer|references|foreign_key:true|
+|municipalities|string|null:false|
+|address_number|integer|null:false|
+|building|string||
+|tel|string|null:false|
+|consumer|references|foreign_key:true,null:false|
 
 ## Association
 - belongs_to :consumer
@@ -48,8 +48,8 @@
 # consumersテーブル
 |column|type|option|
 |-|:-:|-:|
-|user|references|foreign_key:true|
-|item|references|foreign_key:true|
+|user|references|foreign_key:true,null:false|
+|item|references|foreign_key:true,null:false|
 
 ## Association
 - belongs_to :user
