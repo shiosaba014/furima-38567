@@ -7,7 +7,7 @@ FactoryBot.define do
     delivery_charge_id {2}
     address_id {2}
     period_id {2}
-    price {Faker::Number.number(digits:10)}
+    price {Faker::Number.number(digits:5)}
     association :user
     after(:build) do |item|
       item.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
