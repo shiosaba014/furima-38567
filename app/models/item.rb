@@ -11,8 +11,7 @@ class Item < ApplicationRecord
   validates :image, :name, :explan, presence: true
   validates :price,
             numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
-                            message: 'is out of setting range' }
-  validates :price, format: { with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' }, presence: true
+                            message: 'is out of setting range' }, presence: true
   validates :category_id, :situation_id, :delivery_charge_id, :address_id, :period_id,
             numericality: { other_than: 1, message: "can't be blank" }
 end
