@@ -6,7 +6,6 @@ class Item < ApplicationRecord
   belongs_to :address
   belongs_to :period
   belongs_to :user
-  has_one :consumer
   has_one_attached :image
 
   validates :image, :name, :explan, presence: true
