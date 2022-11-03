@@ -3,13 +3,11 @@ class ConsumersController < ApplicationController
   def index
     @consumer_buyer = ConsumerBuyer.new
     @item = Item.find(params[:item_id])
-    if @item.user_id == current_user.id
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.user_id == current_user.id
   end
 
-def new
-end
+  def new
+  end
 
   def create
     @item = Item.find(params[:item_id])
@@ -27,16 +25,17 @@ end
   private
 
   def consumer_params
-    params.require(:consumer_buyer).permit(:post_code,:address_id,:municipalities,:address_number,:building,:tel).merge(consumer_id: current_user.id,user_id: current_user.id,item_id:@item.id,token: params[:token])
+    params.require(:consumer_buyer).permit(:post_code, :address_id, :municipalities, :address_number, :building, :tel).merge(
+      user_id: current_user.id, item_id: @item.id, token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: params[:token],
       currency: 'jpy'
     )
   end
-
 end
