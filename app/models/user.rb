@@ -8,10 +8,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nickname, :birth, presence: true
 
-  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: '. Include both letters and numbers' }
+  validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i, message: 'は英字と数字の両方を含んでください' }
 
-  validates :family_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: '. Input full-width characters' },
+  validates :family_name, :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]+\z/, message: 'は全角で入力してください' },
                                        presence: true
-  validates :family_name_kana, :first_name_kana, format: { with: /\A[ァ-ン]+\z/, message: '. Input full-width katakana characters' },
+  validates :family_name_kana, :first_name_kana, format: { with: /\A[ァ-ン]+\z/, message: 'はカタカナで入力してください' },
                                                  presence: true
 end

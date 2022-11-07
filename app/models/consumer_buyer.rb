@@ -8,7 +8,7 @@ class ConsumerBuyer
     validates :tel, format: { with: /\A\d{10,11}\z/ }
     validates :user_id, :item_id
   end
-  validates :address_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :address_id, numericality: { other_than: 1 }
 
   def save
     consumer = Consumer.create(user_id: user_id, item_id: item_id)
