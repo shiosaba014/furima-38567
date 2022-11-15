@@ -2,6 +2,14 @@ crumb :root do
   link "Home", root_path
 end
 
+crumb :user do
+  link "SignIn", new_user_session_path
+end
+
+crumb :new_user do
+  link "SignUp",new_user_registration_path
+end
+
 crumb :item_show do |item|
   link "商品詳細", item_path(item)
   parent :root
