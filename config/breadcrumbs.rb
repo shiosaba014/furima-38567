@@ -1,13 +1,17 @@
 crumb :root do
-  link "Home", root_path
+  link "ホーム", root_path
 end
 
 crumb :user do
-  link "SignIn", new_user_session_path
+  link "ログイン", new_user_session_path
 end
 
 crumb :new_user do
-  link "SignUp",new_user_registration_path
+  link "新規登録", new_user_registration_path
+end
+
+crumb :item_new do
+  link "商品出品", new_item_path
 end
 
 crumb :item_show do |item|
