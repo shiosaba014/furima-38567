@@ -26,10 +26,18 @@ class ItemsController < ApplicationController
     if @item.user_id != current_user.id || @item.consumer
       redirect_to root_path
     end
+    item_attributes = @item.attributes
+    @item_form = ItemForm.new(item_attributes)
+    @item_form.tag_name = @item.tags.first&.tag_name
   end
 
   def update
-    if @item.update(item_params)
+    @item_form = ItemForm.new(item_params)
+
+    @item_form.image ||= @item.image.blob
+
+    if @item_form.valid?
+      @item_form.update(item_params,@item)
       redirect_to item_path(@item.id)
     else
       render :edit
@@ -46,8 +54,10 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item_form).permit(:name, :explan, :category_id, :situation_id, :delivery_charge_id, :address_id, :period_id, :price,
-                                 :tag_name, :image).merge(user_id: current_user.id)
+    params.require(:item_form).permit(
+                                    :name, :explan, :category_id, :situation_id,
+                                    :delivery_charge_id, :address_id, :period_id, :price,
+                                    :tag_name, :image).merge(user_id: current_user.id)
   end
 
   def set_item
