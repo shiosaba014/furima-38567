@@ -4,12 +4,12 @@ class ItemForm
   attr_accessor(
     :name, :explan, :category_id, :situation_id,
     :delivery_charge_id, :address_id, :period_id,
-    :price, :image,:user_id,
+    :price, :images,:user_id,
     :id ,:created_at, :updated_at,
     :tag_name
   )
 
-                validates :image, :name, :explan, presence: true
+                validates :images, :name, :explan, presence: true
                 validates :price,
                           numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999,
                                           message: 'は¥300~¥9,999,999の範囲で半角数字で入力してください' }, presence: true
@@ -18,7 +18,7 @@ class ItemForm
   def save
     item = Item.create(name: name, explan: explan, category_id: category_id, situation_id: situation_id,
                 delivery_charge_id: delivery_charge_id, address_id: address_id, period_id: period_id,
-                price: price, image: image,user_id: user_id)
+                price: price, images: images,user_id: user_id)
     tag = Tag.where(tag_name: tag_name).first_or_initialize
     tag.save
     ItemTagRelation.create(item_id: item.id, tag_id: tag.id)
