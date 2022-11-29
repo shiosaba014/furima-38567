@@ -30,7 +30,7 @@
     <% @items.each do |item| %>
       <li class='list'>
         <div class="posted-content">
-          <%= image_tag item.image,class: "item-img" %><br>
+          <%= image_tag item.images[0],class: "item-img" %><br>
           <%= item.name%><br>
           <%= link_to '詳細', item_path(item.id)%>
         </div>
