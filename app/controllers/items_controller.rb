@@ -34,7 +34,7 @@ class ItemsController < ApplicationController
   def update
     @item_form = ItemForm.new(item_params)
 
-    @item_form.image ||= @item.image.blob
+    @item_form.images ||= @item.images.blobs
 
     if @item_form.valid?
       @item_form.update(item_params,@item)
